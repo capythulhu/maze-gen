@@ -39,8 +39,8 @@ void carve_passage(int x, int y, maze *m) {
         }
 
         if (nx < m->wid && nx >= 0 && ny < m->hei && ny >= 0 && !m->grid[nx][ny]) {
-            m->grid[x][y] = m->grid[x][y] | dirMap[j];
-            m->grid[nx][ny] = m->grid[nx][ny] | dirMap[j + (j & 1 ? -1 : 1)];
+            m->grid[x][y] |= dirMap[j];
+            m->grid[nx][ny] |= dirMap[j + (j & 1 ? -1 : 1)];
             carve_passage(nx, ny, m);
         }
     }
@@ -50,7 +50,7 @@ void carve_passage(int x, int y, maze *m) {
 void render_maze(maze *m) {
     int x, y;
     printf(" ");
-    for(x = 0; x < (m->wid * 2); x++) {
+    for(x = 0; x < (m->wid * 2) - 1; x++) {
         printf("_");
     }
     printf("\n");
