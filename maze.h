@@ -58,9 +58,9 @@ void render_maze(maze *m) {
     for(y = 0; y < m->hei; y++) {
         printf("|");
         for(x = 0; x < m->wid; x++) {
-            printf(((m->grid[x][y] & S) !=  0) ? " " : "_");
-            if((m->grid[x][y] & E) != 0){
-                printf((((m->grid[x][y] | m->grid[x + 1][y]) & S) != 0) ? " " : "_");
+            printf((m->grid[x][y] & S) ? " " : "_");
+            if(m->grid[x][y] & E){
+                printf(((m->grid[x][y] | m->grid[x + 1][y]) & S) ? " " : "_");
             } else {
                 printf("|");
             }
